@@ -16,4 +16,9 @@ class ProcessorType {
      * @var int 外部处理器（动态加载）
      */
     public static int $EXTERNAL = 4;
+
+    public static array $TYPE = array(
+        1 => "BUILT_IN",
+        4 => "EXTERNAL",
+    );
 }

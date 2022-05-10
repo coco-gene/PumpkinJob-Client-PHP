@@ -24,4 +24,11 @@ class ExecuteType {
      * @var int MAP
      */
     public static int $MAP = 4;
+
+    public static array $TYPE = array(
+        1 => "STANDALONE",
+        2 => "BROADCAST",
+        3 => "MAP_REDUCE",
+        4 => "MAP",
+    );
 }

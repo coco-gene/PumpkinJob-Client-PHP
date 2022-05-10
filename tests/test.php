@@ -25,16 +25,21 @@ $domain = "pumpkin-job1.7otech.com";
 $appName = "pumpkinjob-agent-test";
 $password = "pumpkinjob-agent-test";
 
-$pumpkinJobClient = new \IO\Github\PumpkinJob\PumpkinJobClient($domain, $appName, $password);
+use IO\Github\PumpkinJob\PumpkinJobClient;
+use IO\Github\PumpkinJob\Enums\TimeExpressionType;
+use IO\Github\PumpkinJob\Enums\ExecuteType;
+use IO\Github\PumpkinJob\Enums\ProcessorType;
+
+$pumpkinJobClient = new PumpkinJobClient($domain, $appName, $password);
 
 $params = array(
     "id" => 2,
     "jobName" => "OpenAPIJob",
     "jobDescription" => "test OpenAPI",
     "jobParams" => "zdap",
-    "timeExpressionType" => \IO\Github\PumpkinJob\Enums\TimeExpressionType::$API,
-    "executeType" => \IO\Github\PumpkinJob\Enums\ExecuteType::$STANDALONE,
-    "processorType" => \IO\Github\PumpkinJob\Enums\ProcessorType::$BUILT_IN,
+    "timeExpressionType" => TimeExpressionType::$TYPE[TimeExpressionType::$API],
+    "executeType" => ExecuteType::$TYPE[ExecuteType::$STANDALONE],
+    "processorType" => ProcessorType::$TYPE[ProcessorType::$BUILT_IN],
     "processorInfo" => "com.yunqiic.pumpkinjob.official.processors.impl.script.ShellProcessor",
     "designatedWorkers" => "",
     "minCpuCores" => 1.1,
@@ -42,6 +47,8 @@ $params = array(
     "minDiskSpace" => 1.3,
 
 );
+// {"id":2,"jobName":"OpenAPIJob","jobDescription":"test OpenAPI","appId":1,"jobParams":"zdap","timeExpressionType":"CRON","timeExpression":null,"executeType":"BROADCAST","processorType":"EXTERNAL","processorInfo":"com.yunqiic.pumpkinjob.official.processors.impl.script.ShellProcessor","maxInstanceNum":0,"concurrency":5,"instanceTimeLimit":0,"instanceRetryNum":0,"taskRetryNum":0,"minCpuCores":1.1,"minMemorySpace":1.2,"minDiskSpace":1.3,"enable":true,"designatedWorkers":"","maxWorkerCount":0,"notifyUserIds":null,"extra":null,"dispatchStrategy":"HEALTH_FIRST","lifecycle":null}
+// {"id":2,"jobName":"OpenAPIJob","jobDescription":"test OpenAPI","appId":1,"jobParams":"#!/bin/bash\nsu - genome <<EOF\nid;\nzdap;\nEOF","timeExpressionType":"API","timeExpression":null,"executeType":"STANDALONE","processorType":"BUILT_IN","processorInfo":"com.yunqiic.pumpkinjob.official.processors.impl.script.ShellProcessor","maxInstanceNum":0,"concurrency":5,"instanceTimeLimit":0,"instanceRetryNum":0,"taskRetryNum":0,"minCpuCores":1.1,"minMemorySpace":1.2,"minDiskSpace":1.3,"enable":true,"designatedWorkers":"","maxWorkerCount":0,"notifyUserIds":null,"extra":null,"dispatchStrategy":"HEALTH_FIRST","lifecycle":null}
 $result = $pumpkinJobClient->saveJob($params);
 
 print_r($result);
