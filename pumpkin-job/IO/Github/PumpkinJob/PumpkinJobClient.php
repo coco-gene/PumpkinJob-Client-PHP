@@ -9,6 +9,7 @@ namespace IO\Github\PumpkinJob;
 
 use IO\Github\PumpkinJob\Exceptions\PumpkinJobException;
 use IO\Github\PumpkinJob\Http\GuzzleHttpRequest;
+use IO\Github\PumpkinJob\Util\Logger;
 
 class PumpkinJobClient {
 
@@ -80,6 +81,8 @@ class PumpkinJobClient {
         )
          */
         $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+
+        Logger::DEBUG("jassertApp:" . json_encode($result));
 
         return $result;
     }
