@@ -55,6 +55,9 @@ $result = $pumpkinJobClient->saveJob($params);
 // {"code":0,"errno":0,"success":true,"data":2,"message":"success","msg":"success","errmsg":"success"}
 print_r($result);
 
+$result = $pumpkinJobClient->fetchJob($jobId);
+print_r($result);
+
 /**
  * Array
 (
