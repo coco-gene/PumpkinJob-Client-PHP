@@ -35,7 +35,6 @@ class PumpkinJobClient {
      * @throws PumpkinJobException
      */
     public function pumpkinJobClient(array $addressList, String $appName, String $password) {
-
         if(empty($addressList)) {
             throw new PumpkinJobException("addressList can't be null!");
         }
