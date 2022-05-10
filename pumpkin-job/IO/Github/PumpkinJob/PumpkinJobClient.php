@@ -69,6 +69,8 @@ class PumpkinJobClient {
         );
         $result = GuzzleHttpRequest::getInstance()->post($url, $params);
 
+        print_r($result);
+
         return $result;
     }
 }
