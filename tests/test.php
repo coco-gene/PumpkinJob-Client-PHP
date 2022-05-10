@@ -146,3 +146,6 @@ $result = $pumpkinJobClient->fetchInstanceStatus(404321016899174528);
 )
  */
 print_r($result);
+
+$result = $pumpkinJobClient->retryInstance(404321016899174528);
+print_r($result);
