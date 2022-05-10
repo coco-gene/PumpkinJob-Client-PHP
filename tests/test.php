@@ -116,8 +116,6 @@ if(count($argv) > 1 && $argv[1] == "deleteJob") {
     print_r($result);
 }
 
-exit();
-
 /**
  * Array
 (
