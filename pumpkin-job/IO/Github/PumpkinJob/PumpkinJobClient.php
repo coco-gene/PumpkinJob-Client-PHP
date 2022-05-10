@@ -132,6 +132,21 @@ class PumpkinJobClient {
         return $result;
     }
 
+    /**
+     * Query all JobInfo
+     *
+     * @return $result All JobInfo
+     */
+    public function fetchAllJob() {
+        $url = PumpkinJobClient::getUrl(OpenAPIConstant::$FETCH_ALL_JOB, $this->_currentAddress);
+        $params = array(
+            "appId" => $this->_appId,
+        );
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+
+        return $result;
+    }
+
     public function runJob(int $jobId) : array {
         return $this->_runJob($jobId, "", 0);
     }

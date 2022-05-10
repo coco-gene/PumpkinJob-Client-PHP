@@ -101,6 +101,9 @@ $result = $pumpkinJobClient->fetchJob($jobId);
  */
 print_r($result);
 
+$result = $pumpkinJobClient->fetchAllJob();
+print_r($result);
+
 exit();
 
 /**
