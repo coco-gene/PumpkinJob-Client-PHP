@@ -67,9 +67,19 @@ class PumpkinJobClient {
             "appName" => $appName,
             "password" => $password,
         );
+        /**
+         * Array
+        (
+        [code] => 0
+        [errno] => 0
+        [success] => 1
+        [data] => 1
+        [message] => success
+        [msg] => success
+        [errmsg] => success
+        )
+         */
         $result = GuzzleHttpRequest::getInstance()->post($url, $params);
-
-        print_r($result);
 
         return $result;
     }
