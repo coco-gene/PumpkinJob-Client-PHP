@@ -76,4 +76,7 @@ if($argv[1] == "runJob") {
     print_r($result);
 }
 
+// 404321016899174528
+$result = $pumpkinJobClient->fetchInstanceInfo(404321016899174528);
+print_r($result);
 

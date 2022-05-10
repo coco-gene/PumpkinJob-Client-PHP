@@ -106,6 +106,16 @@ class PumpkinJobClient {
         return $this->_runJob($jobId, $instanceParams, $delayMS);
     }
 
+    public function fetchInstanceInfo(int $instanceId) : array {
+        $url = PumpkinJobClient::getUrl(OpenAPIConstant::$FETCH_INSTANCE_INFO, $this->_currentAddress);
+        $params = array(
+            "instanceId" => $instanceId,
+        );
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+
+        return $result;
+    }
+
     /**
      * Run a job once
      *
