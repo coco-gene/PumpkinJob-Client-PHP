@@ -131,9 +131,9 @@ class PumpkinJobClient {
      * Query status about a job instance
      *
      * @param $instanceId int
-     * @return $instanceStatus
+     * @return $instanceStatus int
      */
-    public function fetchInstanceStatus($instanceId) {
+    public function fetchInstanceStatus($instanceId) : array {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$FETCH_INSTANCE_STATUS, $this->_currentAddress);
         $params = array(
             "instanceId" => $instanceId,
