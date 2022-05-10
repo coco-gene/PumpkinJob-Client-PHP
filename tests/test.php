@@ -133,4 +133,16 @@ $result = $pumpkinJobClient->stopInstance(404321016899174528);
 print_r($result);
 
 $result = $pumpkinJobClient->fetchInstanceStatus(404321016899174528);
+/**
+ * Array
+(
+[code] => 0
+[errno] => 0
+[success] => 1
+[data] => 5
+[message] => success
+[msg] => success
+[errmsg] => success
+)
+ */
 print_r($result);
