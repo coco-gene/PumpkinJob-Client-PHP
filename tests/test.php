@@ -129,3 +129,5 @@ $result = $pumpkinJobClient->fetchInstanceInfo(404321016899174528);
  */
 print_r($result);
 
+$result = $pumpkinJobClient->stopInstance(404321016899174528);
+print_r($result);

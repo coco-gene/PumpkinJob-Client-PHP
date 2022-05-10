@@ -116,6 +116,17 @@ class PumpkinJobClient {
         return $result;
     }
 
+    public function stopInstance(int $instanceId) : array {
+        $url = PumpkinJobClient::getUrl(OpenAPIConstant::$STOP_INSTANCE, $this->_currentAddress);
+        $params = array(
+            "instanceId" => $instanceId,
+            "appId" => $this->_appId,
+        );
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+
+        return $result;
+    }
+
     /**
      * Run a job once
      *
