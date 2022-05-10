@@ -56,6 +56,49 @@ $result = $pumpkinJobClient->saveJob($params);
 print_r($result);
 
 $result = $pumpkinJobClient->fetchJob($jobId);
+/**
+ * Array
+(
+[code] => 0
+[errno] => 0
+[success] => 1
+[data] => Array
+(
+[id] => 2
+[jobName] => OpenAPIJob
+[jobDescription] => test OpenAPI
+[appId] => 1
+[jobParams] => zdap
+[timeExpressionType] => 1
+[timeExpression] =>
+[executeType] => 1
+[processorType] => 1
+[processorInfo] => com.yunqiic.pumpkinjob.official.processors.impl.script.ShellProcessor
+[maxInstanceNum] => 0
+[concurrency] => 5
+[instanceTimeLimit] => 0
+[instanceRetryNum] => 0
+[taskRetryNum] => 0
+[status] => 1
+[nextTriggerTime] => 1652079600000
+[minCpuCores] => 1.1
+[minMemorySpace] => 1.2
+[minDiskSpace] => 1.3
+[designatedWorkers] =>
+[maxWorkerCount] => 0
+[notifyUserIds] =>
+[gmtCreate] => 2022-05-09T06:14:35.660+00:00
+[gmtModified] => 2022-05-10T10:38:18.818+00:00
+[extra] =>
+[dispatchStrategy] => 1
+[lifecycle] =>
+)
+
+[message] => success
+[msg] => success
+[errmsg] => success
+)
+ */
 print_r($result);
 
 exit();
