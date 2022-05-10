@@ -51,4 +51,5 @@ $params = array(
 // {"id":2,"jobName":"OpenAPIJob","jobDescription":"test OpenAPI","appId":1,"jobParams":"#!/bin/bash\nsu - genome <<EOF\nid;\nzdap;\nEOF","timeExpressionType":"API","timeExpression":null,"executeType":"STANDALONE","processorType":"BUILT_IN","processorInfo":"com.yunqiic.pumpkinjob.official.processors.impl.script.ShellProcessor","maxInstanceNum":0,"concurrency":5,"instanceTimeLimit":0,"instanceRetryNum":0,"taskRetryNum":0,"minCpuCores":1.1,"minMemorySpace":1.2,"minDiskSpace":1.3,"enable":true,"designatedWorkers":"","maxWorkerCount":0,"notifyUserIds":null,"extra":null,"dispatchStrategy":"HEALTH_FIRST","lifecycle":null}
 $result = $pumpkinJobClient->saveJob($params);
 
+// {"code":0,"errno":0,"success":true,"data":2,"message":"success","msg":"success","errmsg":"success"}
 print_r($result);
