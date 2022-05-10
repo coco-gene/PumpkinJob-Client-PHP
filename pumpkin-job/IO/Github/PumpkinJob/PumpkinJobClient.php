@@ -102,6 +102,10 @@ class PumpkinJobClient {
         return $this->_runJob($jobId, "", 0);
     }
 
+    public function runJobDelay(int $jobId, String $instanceParams, int $delayMS) : array {
+        return $this->_runJob($jobId, $instanceParams, $delayMS);
+    }
+
     /**
      * Run a job once
      *

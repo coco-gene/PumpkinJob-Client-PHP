@@ -71,6 +71,9 @@ if($argv[1] == "runJob") {
      */
     $result = $pumpkinJobClient->runJob($jobId);
     print_r($result);
+
+    $result = $pumpkinJobClient->runJobDelay($jobId, "this is instanceParams", 60000);
+    print_r($result);
 }
 
 
