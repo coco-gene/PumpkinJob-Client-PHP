@@ -32,8 +32,9 @@ use IO\Github\PumpkinJob\Enums\ProcessorType;
 
 $pumpkinJobClient = new PumpkinJobClient($domain, $appName, $password);
 
+$jobId = 2;
 $params = array(
-    "id" => 2,
+    "id" => $jobId,
     "jobName" => "OpenAPIJob",
     "jobDescription" => "test OpenAPI",
     "jobParams" => "zdap",
@@ -53,3 +54,7 @@ $result = $pumpkinJobClient->saveJob($params);
 
 // {"code":0,"errno":0,"success":true,"data":2,"message":"success","msg":"success","errmsg":"success"}
 print_r($result);
+
+$result = $pumpkinJobClient->runJob($jobId);
+print_r($result);
+

@@ -97,4 +97,31 @@ class PumpkinJobClient {
 
         return $result;
     }
+
+    public function runJob(int $jobId) : array {
+        return $this->_runJob($jobId, "", 0);
+    }
+
+    /**
+     * Run a job once
+     *
+     * @param $jobId          int ID of the job to be run
+     * @param $instanceParams string Runtime parameters of the job (TaskContext#instanceParams)
+     * @param $delayMS        int Delay time（Milliseconds）
+     * @return $instanceId
+     */
+    private function _runJob(int $jobId, String $instanceParams, int $delayMS) : array {
+        $url = PumpkinJobClient::getUrl(OpenAPIConstant::$RUN_JOB, $this->_currentAddress);
+        $params = array(
+            "jobId" => $jobId,
+            "appId" => $this->_appId,
+            "delay" => $delayMS,
+        );
+        if (!empty($instanceParams)) {
+            $params["instanceParams"] = $instanceParams;
+        }
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+
+        return $result;
+    }
 }
