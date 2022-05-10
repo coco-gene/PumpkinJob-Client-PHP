@@ -58,6 +58,8 @@ print_r($result);
 $result = $pumpkinJobClient->fetchJob($jobId);
 print_r($result);
 
+exit();
+
 /**
  * Array
 (
