@@ -48,3 +48,13 @@ $params = array(
 
 );
 $result = $pumpkinJobClient->saveJob($params);
+
+$result = $pumpkinJobClient->fetchJob($jobId);
+
+$result = $pumpkinJobClient->runJob($jobId);
+
+$result = $pumpkinJobClient->fetchInstanceInfo(404321016899174528);
+
+$result = $pumpkinJobClient->stopInstance(404321016899174528);
+
+$result = $pumpkinJobClient->fetchInstanceStatus(404321016899174528);
