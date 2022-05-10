@@ -96,5 +96,36 @@ if(count($argv) > 1 && $argv[1] == "runJob") {
 
 // 404321016899174528
 $result = $pumpkinJobClient->fetchInstanceInfo(404321016899174528);
+/**
+ * Array
+(
+[code] => 0
+[errno] => 0
+[success] => 1
+[data] => Array
+(
+[jobId] => 2
+[appId] => 1
+[instanceId] => 404321016899174528
+[wfInstanceId] =>
+[jobParams] => zdap
+[instanceParams] =>
+[status] => 5
+[type] => 1
+[result] => [INPUT]: usage: zdap [-h] [--version]            {bam2bdg,bamsort,bamqc,bwamem,contam,fastqc,staralign,starsrna,htseqcount,cutadap,markdup,bqsr,mutect2,hapcaller,mergetable,deseq2,riboqual,ribopred,macs2callpeak,mergefq}            ...zdap -- Data processing toolpositional arguments:  {bam2bdg,bamsort,bamqc,bwamem,contam,fastqc,staralign,starsrna,htseqcount,cutadap,markdup,bqsr,mutect2,hapcaller,mergetable,deseq2,riboqual,ribopred,macs2callpeak,mergefq}    bam2bdg             Convert bam to bedgraph    bamsort             Sort bam file    bamqc               Quality control for bam alignment    bwamem              BWA MEM genome align    contam              Estimation of contamination using VerifyBamID    fastqc              FastQC quality control    staralign           STAR RNASeq genome align    starsrna            STAR small RNA genome align    htseqcount          HTSeq count gene expression    cutadap             Cut adapter sequences    markdup             GATK MarkDuplicates    bqsr                GATK ...
+[expectedTriggerTime] => 1652173642347
+[actualTriggerTime] => 1652173642374
+[finishedTime] => 1652173645407
+[taskTrackerAddress] => 172.17.0.2:27777
+[runningTimes] => 1
+[gmtCreate] => 2022-05-10T09:07:22.350+00:00
+[gmtModified] => 2022-05-10T09:07:25.407+00:00
+)
+
+[message] => success
+[msg] => success
+[errmsg] => success
+)
+ */
 print_r($result);
 
