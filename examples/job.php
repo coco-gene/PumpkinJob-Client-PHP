@@ -47,12 +47,14 @@ $params = array(
     "minDiskSpace" => 1.3,
 
 );
+// if there is no id param it will add a new job otherwise if will modify the job
 $result = $pumpkinJobClient->saveJob($params);
 
 $result = $pumpkinJobClient->fetchJob($jobId);
 
 $result = $pumpkinJobClient->runJob($jobId);
 
+// runJob will return instanceId
 $instanceId = 404321016899174528;
 $result = $pumpkinJobClient->fetchInstanceInfo($instanceId);
 
