@@ -53,8 +53,9 @@ $result = $pumpkinJobClient->fetchJob($jobId);
 
 $result = $pumpkinJobClient->runJob($jobId);
 
-$result = $pumpkinJobClient->fetchInstanceInfo(404321016899174528);
+$instanceId = 404321016899174528;
+$result = $pumpkinJobClient->fetchInstanceInfo($instanceId);
 
-$result = $pumpkinJobClient->stopInstance(404321016899174528);
+$result = $pumpkinJobClient->stopInstance($instanceId);
 
-$result = $pumpkinJobClient->fetchInstanceStatus(404321016899174528);
+$result = $pumpkinJobClient->fetchInstanceStatus($instanceId);
