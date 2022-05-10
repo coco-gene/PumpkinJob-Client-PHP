@@ -7,7 +7,7 @@
  */
 
 define("ROOT", dirname(__DIR__));
-// DEBUG should create dir use command sudo mkdir /var/log/wechaty && sudo chmod 777 /var/log/wechaty
+// DEBUG should create dir use command sudo mkdir /var/log/pumpkinjob && sudo chmod 777 /var/log/pumpkinjob
 define("DEBUG", 1);
 
 function autoload($clazz) {
