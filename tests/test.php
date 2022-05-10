@@ -27,3 +27,21 @@ $password = "pumpkinjob-agent-test";
 
 $pumpkinJobClient = new \IO\Github\PumpkinJob\PumpkinJobClient($domain, $appName, $password);
 
+$params = array(
+    "id" => 2,
+    "jobName" => "OpenAPIJob",
+    "jobDescription" => "test OpenAPI",
+    "jobParams" => "zdap",
+    "timeExpressionType" => \IO\Github\PumpkinJob\Enums\TimeExpressionType::$API,
+    "executeType" => \IO\Github\PumpkinJob\Enums\ExecuteType::$STANDALONE,
+    "processorType" => \IO\Github\PumpkinJob\Enums\ProcessorType::$BUILT_IN,
+    "processorInfo" => "com.yunqiic.pumpkinjob.official.processors.impl.script.ShellProcessor",
+    "designatedWorkers" => "",
+    "minCpuCores" => 1.1,
+    "minMemorySpace" => 1.2,
+    "minDiskSpace" => 1.3,
+
+);
+$result = $pumpkinJobClient->saveJob($params);
+
+print_r($result);

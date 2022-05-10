@@ -8,6 +8,7 @@
 namespace IO\Github\PumpkinJob\Http;
 
 use IO\Github\PumpkinJob\Exceptions\PumpkinJobException;
+use IO\Github\PumpkinJob\Util\Logger;
 
 class HttpRequest extends Request {
     const USER_AGENT = 'pumpkinjob-php/1.0';
@@ -58,7 +59,9 @@ class HttpRequest extends Request {
                 'user_agent' => self::USER_AGENT,
             ), $options);
             $result = CurlManager::getInstance($options)->request($method, $url, $parameters, $headers, $options['timeout']);
-            //TODO 记录调用日志
+            //记录调用日志
+            Logger::DEBUG($apiName, "http", $requestPath, $method,
+                $parameters, $result, $deviceId, $startTime);
             return $result;
         }
 
@@ -103,7 +106,9 @@ class HttpRequest extends Request {
 
             if ($response && $response->getResponseCode() == 200) {
                 $result = $response->getBody()->toString();
-                //TODO 记录调用日志
+                //记录调用日志
+                Logger::DEBUG($apiName, "http", $requestPath, $method,
+                    $parameters, $result, $deviceId, $startTime);
                 return $result;
             }
             $result = array(
@@ -120,7 +125,9 @@ class HttpRequest extends Request {
                 'status' => $e->getMessage(),
                 'body' => '',
             );
-            //TODO 记录调用日志
+            //记录调用日志
+            Logger::DEBUG($apiName, "http", $requestPath, $method,
+                $parameters, $result, $deviceId, $startTime);
             throw (new PumpkinJobException("$method $url failed :" . $e->getMessage(), $e->getCode()))->setResult($result);
         }
     }

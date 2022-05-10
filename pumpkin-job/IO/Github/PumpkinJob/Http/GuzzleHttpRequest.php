@@ -8,6 +8,7 @@
 namespace IO\Github\PumpkinJob\Http;
 
 use IO\Github\PumpkinJob\Exceptions\PumpkinJobException;
+use IO\Github\PumpkinJob\Util\Logger;
 
 class GuzzleHttpRequest extends Request {
     /**
@@ -52,10 +53,52 @@ class GuzzleHttpRequest extends Request {
         $options = array(
             'form_params' => $params,
         );
+
         $response = self::$_INSTANCE->_guzzleClient->request('POST', $url, $options);
         if($response->getStatusCode() == 200) {
+            $logData = array(
+                "url" => $url,
+                "method" => "post",
+                "params" => $params,
+                "code" => $response->getStatusCode(),
+                "result" => $response->getBody()
+            );
+            Logger::DEBUG($logData);
             return json_decode($response->getBody(), true);
         } else {
+            $logData = array(
+                "url" => $url,
+                "method" => "post",
+                "params" => $params,
+                "code" => $response->getStatusCode(),
+            );
+            Logger::DEBUG($logData);
+            throw new PumpkinJobException("get failed with code " . $response->getStatusCode());
+        }
+    }
+
+    public function postJson(String $url, array $params) {
+        $options = array(
+            'json' => $params,
+        );
+        $response = self::$_INSTANCE->_guzzleClient->request('POST', $url, $options);
+        if($response->getStatusCode() == 200) {
+            $logData = array(
+                "url" => $url,
+                "method" => "postJson",
+                "params" => $params,
+                "code" => $response->getStatusCode(),
+                "result" => $response->getBody()
+            );
+            Logger::DEBUG($logData);
+            return json_decode($response->getBody(), true);
+        } else {
+            $logData = array(
+                "url" => $url,
+                "method" => "postJson",
+                "params" => $params,
+                "code" => $response->getStatusCode(),
+            );
             throw new PumpkinJobException("get failed with code " . $response->getStatusCode());
         }
     }

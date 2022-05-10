@@ -87,4 +87,14 @@ class PumpkinJobClient {
 
         return $result;
     }
+
+    public function saveJob(array $params) : array {
+        $url = PumpkinJobClient::getUrl(OpenAPIConstant::$SAVE_JOB, $this->_currentAddress);
+        $params["appId"] = $this->_appId;
+        $result = GuzzleHttpRequest::getInstance()->postJson($url, $params);
+
+        Logger::DEBUG("saveJob:" . json_encode($result));
+
+        return $result;
+    }
 }
