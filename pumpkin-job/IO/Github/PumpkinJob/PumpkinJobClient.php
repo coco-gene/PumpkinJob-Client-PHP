@@ -47,7 +47,8 @@ class PumpkinJobClient {
         foreach ($addressList as $key => $value) {
             $url = PumpkinJobClient::getUrl(OpenAPIConstant::$ASSERT, $value);
             $result = $this->assertApp($appName, $password, $url);
-            if($result["success"]) {
+            // {"code":0,"errno":0,"success":true,"data":1,"message":"success","msg":"success","errmsg":"success"}
+            if(isset($result["success"]) && $result["success"]) {
                 $this->_appId = $result["data"];
                 $this->_currentAddress = $value;
                 break;
