@@ -60,4 +60,5 @@ $result = $pumpkinJobClient->fetchInstanceInfo($instanceId);
 
 $result = $pumpkinJobClient->stopInstance($instanceId);
 
+// see \IO\Github\PumpkinJob\Enums\InstanceStatus
 $result = $pumpkinJobClient->fetchInstanceStatus($instanceId);
