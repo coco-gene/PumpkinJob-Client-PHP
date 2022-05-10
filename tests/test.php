@@ -104,6 +104,18 @@ print_r($result);
 $result = $pumpkinJobClient->fetchAllJob();
 print_r($result);
 
+$result = $pumpkinJobClient->disableJob($jobId);
+print_r($result);
+
+$result = $pumpkinJobClient->enableJob($jobId);
+print_r($result);
+
+print_r($argv);
+if(count($argv) > 1 && $argv[1] == "deleteJob") {
+    $result = $pumpkinJobClient->deleteJob($jobId);
+    print_r($result);
+}
+
 exit();
 
 /**
