@@ -98,6 +98,23 @@ class PumpkinJobClient {
         return $result;
     }
 
+    /**
+     * Copy one Job
+     *
+     * @param $jobId int Job id
+     * @return $result Id of job copy
+     */
+    public function copyJob(int $jobId) {
+        $url = PumpkinJobClient::getUrl(OpenAPIConstant::$COPY_JOB, $this->_currentAddress);
+        $params = array(
+            "jobId" => $jobId,
+            "appId" => $this->_appId,
+        );
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+
+        return $result;
+    }
+
     public function runJob(int $jobId) : array {
         return $this->_runJob($jobId, "", 0);
     }
