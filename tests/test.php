@@ -55,18 +55,22 @@ $result = $pumpkinJobClient->saveJob($params);
 // {"code":0,"errno":0,"success":true,"data":2,"message":"success","msg":"success","errmsg":"success"}
 print_r($result);
 
-/**
- * Array
-(
-[code] => 0
-[errno] => 0
-[success] => 1
-[data] => 404321016899174528
-[message] => success
-[msg] => success
-[errmsg] => success
-)
- */
-$result = $pumpkinJobClient->runJob($jobId);
-print_r($result);
+print_r($argv);
+if($argv[1] == "runJob") {
+    /**
+     * Array
+    (
+    [code] => 0
+    [errno] => 0
+    [success] => 1
+    [data] => 404321016899174528
+    [message] => success
+    [msg] => success
+    [errmsg] => success
+    )
+     */
+    $result = $pumpkinJobClient->runJob($jobId);
+    print_r($result);
+}
+
 
