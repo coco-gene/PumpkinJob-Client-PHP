@@ -55,8 +55,14 @@ $result = $pumpkinJobClient->saveJob($params);
 // {"code":0,"errno":0,"success":true,"data":2,"message":"success","msg":"success","errmsg":"success"}
 print_r($result);
 
+/**
+ * Array
+(
+[0] => tests/test.php
+)
+ */
 print_r($argv);
-if($argv[1] == "runJob") {
+if(count($argv) > 1 && $argv[1] == "runJob") {
     /**
      * Array
     (
@@ -72,6 +78,18 @@ if($argv[1] == "runJob") {
     $result = $pumpkinJobClient->runJob($jobId);
     print_r($result);
 
+    /**
+     * Array
+    (
+    [code] => 0
+    [errno] => 0
+    [success] => 1
+    [data] => 404326845819912320
+    [message] => success
+    [msg] => success
+    [errmsg] => success
+    )
+     */
     $result = $pumpkinJobClient->runJobDelay($jobId, "this is instanceParams", 60000);
     print_r($result);
 }
