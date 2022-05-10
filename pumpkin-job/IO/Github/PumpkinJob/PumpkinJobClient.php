@@ -151,7 +151,7 @@ class PumpkinJobClient {
      * @return $result return object
      */
     public function retryInstance($instanceId) : array {
-        $url = PumpkinJobClient::getUrl(OpenAPIConstant::$FETCH_INSTANCE_STATUS, $this->_currentAddress);
+        $url = PumpkinJobClient::getUrl(OpenAPIConstant::$RETRY_INSTANCE, $this->_currentAddress);
         $params = array(
             "instanceId" => $instanceId,
             "appId" => $this->_appId,
