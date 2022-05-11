@@ -110,7 +110,7 @@ class PumpkinJobClient {
      * When an ID exists in $params, it is an update operation. Otherwise, it is a crate operation.
      *
      * @param array $params
-     * @return int
+     * @return int jobId
      * @throws Exceptions\HttpRequestException
      * @throws PumpkinJobException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -128,10 +128,13 @@ class PumpkinJobClient {
     /**
      * Copy one Job
      *
-     * @param $jobId int Job id
-     * @return $result Id of job copy
+     * @param int $jobId Job id
+     * @return int Id of job copy
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function copyJob(int $jobId) {
+    public function copyJob(int $jobId) : int{
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$COPY_JOB, $this->_currentAddress);
         $params = array(
             "jobId" => $jobId,
@@ -145,10 +148,13 @@ class PumpkinJobClient {
     /**
      * Query JobInfo by jobId
      *
-     * @param $jobId int jobId
-     * @return $result Job meta info
+     * @param int $jobId jobId
+     * @return array Job meta info
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function fetchJob(int $jobId) {
+    public function fetchJob(int $jobId) : array {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$FETCH_JOB, $this->_currentAddress);
         $params = array(
             "jobId" => $jobId,
