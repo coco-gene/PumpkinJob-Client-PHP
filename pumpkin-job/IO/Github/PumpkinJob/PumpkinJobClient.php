@@ -18,10 +18,14 @@ class PumpkinJobClient {
     private $_currentAddress = null;
 
     /**
+     * Init PumpkinJobClient with domain, appName and password.
+     *
      * @param String $domain
      * @param String $appName
      * @param String $password
+     * @throws Exceptions\HttpRequestException
      * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function __construct(String $domain, String $appName, String $password) {
         $addressList = array($domain);
@@ -29,11 +33,15 @@ class PumpkinJobClient {
     }
 
     /**
+     * Init PumpkinJobClient with server address, appName and password.
+     *
      * @param array $addressList
      * @param String $appName
      * @param String $password
      * @return void
+     * @throws Exceptions\HttpRequestException
      * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function pumpkinJobClient(array $addressList, String $appName, String $password) {
         if(empty($addressList)) {
@@ -63,6 +71,15 @@ class PumpkinJobClient {
         return "http://" . $address . OpenAPIConstant::$WEB_PATH . $path;
     }
 
+    /**
+     * @param String $appName
+     * @param String $password
+     * @param String $url
+     * @return mixed
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     private static function assertApp(String $appName, String $password, String $url) {
         // post
         $params = array(
@@ -81,7 +98,7 @@ class PumpkinJobClient {
         [errmsg] => success
         )
          */
-        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
         Logger::DEBUG("jassertApp:" . json_encode($result));
 
