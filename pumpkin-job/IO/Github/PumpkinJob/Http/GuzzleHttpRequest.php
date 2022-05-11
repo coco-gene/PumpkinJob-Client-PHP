@@ -66,15 +66,16 @@ class GuzzleHttpRequest extends Request {
 
         $response = self::$_INSTANCE->_guzzleClient->request('POST', $url, $options);
         if($response->getStatusCode() == 200) {
+            $result = json_decode($response->getBody(), true);
             $logData = array(
                 "url" => $url,
                 "method" => "post",
                 "params" => $params,
                 "code" => $response->getStatusCode(),
-                "result" => $response->getBody()
+                "result" => $result
             );
             Logger::DEBUG($logData);
-            $result = json_decode($response->getBody(), true);
+
             if($needResult) {
                 return $result;
             } else {
@@ -111,15 +112,15 @@ class GuzzleHttpRequest extends Request {
         );
         $response = self::$_INSTANCE->_guzzleClient->request('POST', $url, $options);
         if($response->getStatusCode() == 200) {
+            $result = json_decode($response->getBody(), true);
             $logData = array(
                 "url" => $url,
                 "method" => "postJson",
                 "params" => $params,
                 "code" => $response->getStatusCode(),
-                "result" => $response->getBody()
+                "result" => $result
             );
             Logger::DEBUG($logData);
-            $result = json_decode($response->getBody(), true);
             if($needResult) {
                 return $result;
             } else {
