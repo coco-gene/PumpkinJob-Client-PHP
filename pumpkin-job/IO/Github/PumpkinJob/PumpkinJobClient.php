@@ -200,7 +200,11 @@ class PumpkinJobClient {
         );
         $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
-        return $result["success"];
+        if($result["success"]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -220,7 +224,11 @@ class PumpkinJobClient {
         );
         $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
-        return $result["success"];
+        if($result["success"]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -240,7 +248,11 @@ class PumpkinJobClient {
         );
         $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
-        return $result["success"];
+        if($result["success"]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -307,7 +319,11 @@ class PumpkinJobClient {
         );
         $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
-        return $result["success"];
+        if($result["success"]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -347,7 +363,11 @@ class PumpkinJobClient {
         );
         $result = GuzzleHttpRequest::getInstance()->post($url, $params);
 
-        return $result["success"];
+        if($result["success"]) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
