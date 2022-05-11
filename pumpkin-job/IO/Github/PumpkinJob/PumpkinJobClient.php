@@ -361,7 +361,7 @@ class PumpkinJobClient {
             "instanceId" => $instanceId,
             "appId" => $this->_appId,
         );
-        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
         if($result["success"]) {
             return true;
