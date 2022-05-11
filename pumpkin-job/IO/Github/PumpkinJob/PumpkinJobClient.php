@@ -105,7 +105,17 @@ class PumpkinJobClient {
         return $result;
     }
 
-    public function saveJob(array $params) : array {
+    /**
+     * Save one Job
+     * When an ID exists in $params, it is an update operation. Otherwise, it is a crate operation.
+     *
+     * @param array $params
+     * @return int
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function saveJob(array $params) : int {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$SAVE_JOB, $this->_currentAddress);
         $params["appId"] = $this->_appId;
         $result = GuzzleHttpRequest::getInstance()->postJson($url, $params);
