@@ -7,6 +7,7 @@
  */
 namespace IO\Github\PumpkinJob\Http;
 
+use IO\Github\PumpkinJob\Exceptions\HttpRequestException;
 use IO\Github\PumpkinJob\Exceptions\PumpkinJobException;
 use IO\Github\PumpkinJob\Util\Logger;
 
@@ -54,6 +55,7 @@ class GuzzleHttpRequest extends Request {
      * @param array $params
      * @param bool $needResult
      * @return mixed
+     * @throws HttpRequestException
      * @throws PumpkinJobException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -72,7 +74,16 @@ class GuzzleHttpRequest extends Request {
                 "result" => $response->getBody()
             );
             Logger::DEBUG($logData);
-            return json_decode($response->getBody(), true);
+            $result = json_decode($response->getBody(), true);
+            if($needResult) {
+                return $result;
+            } else {
+                if($result["success"]) {
+                    return $result["data"];
+                } else {
+                    throw new PumpkinJobException("get with err msg: " . $result["msg"]);
+                }
+            }
         } else {
             $logData = array(
                 "url" => $url,
@@ -81,7 +92,7 @@ class GuzzleHttpRequest extends Request {
                 "code" => $response->getStatusCode(),
             );
             Logger::ERR($logData);
-            throw new PumpkinJobException("get failed with code " . $response->getStatusCode());
+            throw new HttpRequestException("get failed with code " . $response->getStatusCode());
         }
     }
 
@@ -90,6 +101,7 @@ class GuzzleHttpRequest extends Request {
      * @param array $params
      * @param bool $needResult
      * @return mixed
+     * @throws HttpRequestException
      * @throws PumpkinJobException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -107,7 +119,16 @@ class GuzzleHttpRequest extends Request {
                 "result" => $response->getBody()
             );
             Logger::DEBUG($logData);
-            return json_decode($response->getBody(), true);
+            $result = json_decode($response->getBody(), true);
+            if($needResult) {
+                return $result;
+            } else {
+                if($result["success"]) {
+                    return $result["data"];
+                } else {
+                    throw new PumpkinJobException("get with err msg: " . $result["msg"]);
+                }
+            }
         } else {
             $logData = array(
                 "url" => $url,
@@ -116,7 +137,7 @@ class GuzzleHttpRequest extends Request {
                 "code" => $response->getStatusCode(),
             );
             Logger::ERR($logData);
-            throw new PumpkinJobException("get failed with code " . $response->getStatusCode());
+            throw new HttpRequestException("get failed with code " . $response->getStatusCode());
         }
     }
 }
