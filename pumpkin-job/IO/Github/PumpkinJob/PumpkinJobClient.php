@@ -168,9 +168,12 @@ class PumpkinJobClient {
     /**
      * Query all JobInfo
      *
-     * @return $result All JobInfo
+     * @return array All JobInfo
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function fetchAllJob() {
+    public function fetchAllJob() : array {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$FETCH_ALL_JOB, $this->_currentAddress);
         $params = array(
             "appId" => $this->_appId,
@@ -183,52 +186,61 @@ class PumpkinJobClient {
     /**
      * Disable one Job by jobId
      *
-     * @param $jobId int
-     * @return $result return object
+     * @param int $jobId
+     * @return mixed return object
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function disableJob($jobId) {
+    public function disableJob(int $jobId) {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$DISABLE_JOB, $this->_currentAddress);
         $params = array(
             "jobId" => $jobId,
             "appId" => $this->_appId,
         );
-        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
-        return $result;
+        return $result["success"];
     }
 
     /**
      * Enable one job by jobId
      *
-     * @param $jobId int
-     * @return $result return object
+     * @param int $jobId
+     * @return mixed return object
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function enableJob($jobId) {
+    public function enableJob(int $jobId) {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$ENABLE_JOB, $this->_currentAddress);
         $params = array(
             "jobId" => $jobId,
             "appId" => $this->_appId,
         );
-        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
-        return $result;
+        return $result["success"];
     }
 
     /**
      * Delete one job by jobId
      *
-     * @param $jobId int
-     * @return $result return object
+     * @param int $jobId
+     * @return mixed return object
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function deleteJob($jobId) {
+    public function deleteJob(int $jobId) {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$DELETE_JOB, $this->_currentAddress);
         $params = array(
             "jobId" => $jobId,
             "appId" => $this->_appId,
         );
-        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
-        return $result;
+        return $result["success"];
     }
 
     public function runJob(int $jobId) : array {
