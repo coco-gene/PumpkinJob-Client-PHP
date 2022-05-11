@@ -244,14 +244,30 @@ class PumpkinJobClient {
     }
 
     /**
-     * @param int $jobId
-     * @return array
+     * Run a job once
+     *
+     * @param int $jobId ID of the job to be run
+     * @return int instanceId
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function runJob(int $jobId) : array {
+    public function runJob(int $jobId) : int {
         return $this->_runJob($jobId, "", 0);
     }
 
-    public function runJobDelay(int $jobId, String $instanceParams, int $delayMS) : array {
+    /**
+     * Run a job once
+     *
+     * @param int $jobId ID of the job to be run
+     * @param String $instanceParams Runtime parameters of the job (TaskContext#instanceParams)
+     * @param int $delayMS Delay time（Milliseconds）
+     * @return int instanceId
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function runJobDelay(int $jobId, String $instanceParams, int $delayMS) : int {
         return $this->_runJob($jobId, $instanceParams, $delayMS);
     }
 
