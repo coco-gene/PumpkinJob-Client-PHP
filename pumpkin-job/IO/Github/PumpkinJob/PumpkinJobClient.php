@@ -243,6 +243,10 @@ class PumpkinJobClient {
         return $result["success"];
     }
 
+    /**
+     * @param int $jobId
+     * @return array
+     */
     public function runJob(int $jobId) : array {
         return $this->_runJob($jobId, "", 0);
     }
@@ -309,12 +313,15 @@ class PumpkinJobClient {
     /**
      * Run a job once
      *
-     * @param $jobId          int ID of the job to be run
-     * @param $instanceParams string Runtime parameters of the job (TaskContext#instanceParams)
-     * @param $delayMS        int Delay time（Milliseconds）
-     * @return $instanceId
+     * @param int $jobId ID of the job to be run
+     * @param String $instanceParams Runtime parameters of the job (TaskContext#instanceParams)
+     * @param int $delayMS Delay time（Milliseconds）
+     * @return int instanceId
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function _runJob(int $jobId, String $instanceParams, int $delayMS) : array {
+    private function _runJob(int $jobId, String $instanceParams, int $delayMS) : int {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$RUN_JOB, $this->_currentAddress);
         $params = array(
             "jobId" => $jobId,
