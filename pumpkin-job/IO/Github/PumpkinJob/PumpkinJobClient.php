@@ -271,6 +271,15 @@ class PumpkinJobClient {
         return $this->_runJob($jobId, $instanceParams, $delayMS);
     }
 
+    /**
+     * Query detail about a job instance
+     *
+     * @param int $instanceId
+     * @return array detail
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function fetchInstanceInfo(int $instanceId) : array {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$FETCH_INSTANCE_INFO, $this->_currentAddress);
         $params = array(
@@ -281,24 +290,36 @@ class PumpkinJobClient {
         return $result;
     }
 
-    public function stopInstance(int $instanceId) : array {
+    /**
+     * Stop one job instance
+     *
+     * @param int $instanceId
+     * @return bool
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function stopInstance(int $instanceId) : bool {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$STOP_INSTANCE, $this->_currentAddress);
         $params = array(
             "instanceId" => $instanceId,
             "appId" => $this->_appId,
         );
-        $result = GuzzleHttpRequest::getInstance()->post($url, $params);
+        $result = GuzzleHttpRequest::getInstance()->post($url, $params, true);
 
-        return $result;
+        return $result["success"];
     }
 
     /**
      * Query status about a job instance
      *
-     * @param $instanceId int
-     * @return $result int
+     * @param int $instanceId
+     * @return int
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function fetchInstanceStatus($instanceId) : array {
+    public function fetchInstanceStatus(int $instanceId) : int {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$FETCH_INSTANCE_STATUS, $this->_currentAddress);
         $params = array(
             "instanceId" => $instanceId,
@@ -312,10 +333,13 @@ class PumpkinJobClient {
      * Retry failed job instance
      * Notice: Only job instance with completion status (success, failure, manually stopped, cancelled) can be retried, and retries of job instances within workflows are not supported yet.
      *
-     * @param $instanceId int
-     * @return $result return object
+     * @param int $instanceId
+     * @return bool
+     * @throws Exceptions\HttpRequestException
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function retryInstance($instanceId) : array {
+    public function retryInstance(int $instanceId) : bool {
         $url = PumpkinJobClient::getUrl(OpenAPIConstant::$RETRY_INSTANCE, $this->_currentAddress);
         $params = array(
             "instanceId" => $instanceId,
