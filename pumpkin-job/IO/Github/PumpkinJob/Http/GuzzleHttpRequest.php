@@ -49,7 +49,15 @@ class GuzzleHttpRequest extends Request {
         }
     }
 
-    public function post(String $url, array $params) {
+    /**
+     * @param String $url
+     * @param array $params
+     * @param bool $needResult
+     * @return mixed
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function post(String $url, array $params, bool $needResult = false) {
         $options = array(
             'form_params' => $params,
         );
@@ -72,12 +80,20 @@ class GuzzleHttpRequest extends Request {
                 "params" => $params,
                 "code" => $response->getStatusCode(),
             );
-            Logger::DEBUG($logData);
+            Logger::ERR($logData);
             throw new PumpkinJobException("get failed with code " . $response->getStatusCode());
         }
     }
 
-    public function postJson(String $url, array $params) {
+    /**
+     * @param String $url
+     * @param array $params
+     * @param bool $needResult
+     * @return mixed
+     * @throws PumpkinJobException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function postJson(String $url, array $params, bool $needResult = false) {
         $options = array(
             'json' => $params,
         );
@@ -99,6 +115,7 @@ class GuzzleHttpRequest extends Request {
                 "params" => $params,
                 "code" => $response->getStatusCode(),
             );
+            Logger::ERR($logData);
             throw new PumpkinJobException("get failed with code " . $response->getStatusCode());
         }
     }
