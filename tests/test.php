@@ -21,9 +21,17 @@ spl_autoload_register("autoload");
 
 require ROOT . '/vendor/autoload.php';
 
-$domain = "pumpkin-job1.7otech.com";
-$appName = "pumpkinjob-agent-test";
-$password = "pumpkinjob-agent-test";
+$domain = getenv("DOMAIN");
+$appName = getenv("APP_NAME");
+$password = getenv("PASSWORD");
+
+if(empty($domain) || empty($appName) || empty($password)) {
+    echo "usage: export DOMAIN=xxx\n
+            export APP_NAME=xxx\n
+            export PASSWORD=xxx\n
+            php job.php";
+    exit;
+}
 
 use IO\Github\PumpkinJob\PumpkinJobClient;
 use IO\Github\PumpkinJob\Enums\TimeExpressionType;
