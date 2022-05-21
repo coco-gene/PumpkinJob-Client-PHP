@@ -103,9 +103,9 @@ class Logger {
             if($dir[strlen($dir) - 1] != "/") {
                 $dir .= "/";
             }
-            return $dir . "wechaty_log-" . date("Ymd");
+            return $dir . "pumpkinjob_log-" . date("Ymd");
         } else {
-            return self::LOGGER_PREFIX . "wechaty_log-" . date("Ymd");
+            return self::LOGGER_PREFIX . "pumpkinjob_log-" . date("Ymd");
         }
     }
 
